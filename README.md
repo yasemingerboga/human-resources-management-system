@@ -1,7 +1,9 @@
-# human-resources-management-system
+# Human Resources Management System
+
+
 Spring - JavaSE-16.0.1 (jre) based.
 
-Dependencies
+## Dependencies
 
 * Spring Boot DevTools
 * Spring Web
