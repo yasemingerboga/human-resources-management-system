@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
+import kodlamaio.hrms.core.abstracts.MernisCheckService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -19,21 +20,28 @@ import kodlamaio.hrms.entities.concretes.Candidate;
 public class CandidateManager implements CandidateService {
 
 	private CandidateDao candidateDao;
+	private MernisCheckService mernisCheckService;
+
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao) {
+	public CandidateManager(CandidateDao candidateDao, MernisCheckService mernisCheckService) {
 		super();
 		this.candidateDao=candidateDao;
+		this.mernisCheckService=mernisCheckService;
 	}
 	@Override
 	public Result add(Candidate candidate) {
+		if(!this.mernisCheckService.checkIfRealPerson(candidate)) 
+		{
+			return new ErrorResult("User information is wrong!");
+		}
 		if(this.getByEmail(candidate.getUser().getEmail()).getData()!=null || this.getByIdentityNumber(candidate.getIdentityNumber()).getData()!=null) 
 		{
 			return new ErrorResult("User already exist!");
 		}
-
 		this.candidateDao.save(candidate);
 		return new SuccessResult("Saved!");
 	}
+	
 	@Override
 	public DataResult<Candidate> getByEmail(String email) {
 		if(this.candidateDao.getByUser_Email(email)==null) 
