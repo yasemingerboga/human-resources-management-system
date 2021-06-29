@@ -16,23 +16,25 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="job_positions")
+@Table(name="cities")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "jobAdvertisements" })
-public class Job {
+public class City {
+	
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	//@ApiModelProperty(hidden = true)
 	private int id;
 	
-	@Column(name="job_title")
-	private String jobTitle;
+	@Column(name="city_name")
+	private String city;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="jobPosition")
-	private List<JobAdvertisement> jobAdvertisements;
+	@OneToMany(mappedBy = "city" )
+	private List<JobAdvertisement> jobadvertisements;
 }
