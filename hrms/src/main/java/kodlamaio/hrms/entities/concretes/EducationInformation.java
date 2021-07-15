@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.springframework.lang.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,5 +43,6 @@ public class EducationInformation {
 	
 	@ManyToOne
 	@JoinColumn(name="cv_id")
+	@JsonIgnore
 	private CV cv;
 }

@@ -19,10 +19,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="foreign_languages")
+@Table(name="skills")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","skillForCV"})public class Skill {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","skillForCV"})
+public class Skill {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

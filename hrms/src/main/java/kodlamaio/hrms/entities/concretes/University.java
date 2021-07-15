@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="education_informations")
+@Table(name="universities")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "educationInformations" })
@@ -34,6 +34,7 @@ public class University {
 	
 	//department
 	@OneToMany(mappedBy="university")
+	@JsonIgnore
 	private List<UniversityDepartment> departments;
 	
 	@JsonIgnore
