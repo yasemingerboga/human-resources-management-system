@@ -4,10 +4,10 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.Link;
 
-public interface CityService {
-	DataResult<List<City>> getAll();
+public interface LinkService {
+	DataResult<List<Link>> getAll();
 
-	Result add(City city);
+	Result add(Link link);
 }

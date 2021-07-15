@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,24 +17,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
+@Table(name="universities")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="cities")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "jobAdvertisements" })
-public class City {
-	
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "educationInformations" })
+public class University {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	//@ApiModelProperty(hidden = true)
 	private int id;
 	
-	@Column(name="city_name")
-	private String city;
+	@Column(name="university_name")
+	private String universityName;
+	
+	//department
+	@OneToMany(mappedBy="university")
+	@JsonIgnore
+	private List<UniversityDepartment> departments;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "city" )
-	private List<JobAdvertisement> jobadvertisements;
+	@OneToMany(mappedBy="university")
+	private List<EducationInformation> educationInformations;
 }

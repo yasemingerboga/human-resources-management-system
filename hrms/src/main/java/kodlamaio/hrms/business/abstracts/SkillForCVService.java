@@ -4,10 +4,10 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.SkillForCV;
 
-public interface CityService {
-	DataResult<List<City>> getAll();
+public interface SkillForCVService {
+	DataResult<List<SkillForCV>> getAll();
 
-	Result add(City city);
+	Result add(SkillForCV skillForCV);
 }
